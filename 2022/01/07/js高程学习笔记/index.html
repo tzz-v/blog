@@ -6,7 +6,7 @@
     <meta name="referrer" content="origin">
     <meta http-equiv="Cache-Control" content="no-transform">
     <meta http-equiv="Cache-Control" content="no-siteapp">
-    <title>test</title>
+    <title>js高程学习笔记</title>
     <link rel="shortcut icon" href="#"/>
 
     <link type="text/css" rel="stylesheet" href="https://cdn.jsdelivr.net/gh/first19326/cdn@master/static/font/LongCang.css">
@@ -32,19 +32,19 @@
     <div class="header">
         <div class="vertical">
             <div class="inner">
-                <h1 class="header-subtitle">test</h1>
+                <h1 class="header-subtitle">js高程学习笔记</h1>
                 <div class="header-subinfo">
                     <p class="article-info-text">
                         <span>
-                            <i class="iconfont icon-time"></i> 发表时间：2022-01-04
+                            <i class="iconfont icon-time"></i> 发表时间：2022-01-07
                         </span>
                         
-                            <span id="/2022/01/04/test/" class="leancloud_visitors" data-flag-title="test">
+                            <span id="/2022/01/07/js高程学习笔记/" class="leancloud_visitors" data-flag-title="js高程学习笔记">
                                 <i class="iconfont icon-browse"></i> 阅读：<sapn class="leancloud-visitors-count"></span>
                             </span>
                         
                         <span>
-                            <i class="iconfont icon-interactive"></i> 评论：<span class="valine-comment-count" data-xid="/2022/01/04/test/"></span>
+                            <i class="iconfont icon-interactive"></i> 评论：<span class="valine-comment-count" data-xid="/2022/01/07/js高程学习笔记/"></span>
                         </span>  
                     </p>                 
                 </div>
@@ -78,6 +78,23 @@
 <li><p>Number(null)  return 0; Number(undefined) return NaN</p>
 </li>
 </ul>
+<h3 id="Symbol类型（3-4）"><a href="#Symbol类型（3-4）" class="headerlink" title="Symbol类型（3.4）"></a>Symbol类型（3.4）</h3><p>之前没仔细了解过，原来Symbol还有几个api</p>
+<p>如果想重用符号实例，可以通过Symbol.for()方法</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> a = <span class="built_in">Symbol</span>(<span class="string">&#x27;a&#x27;</span>)</span><br><span class="line"><span class="keyword">const</span> b = <span class="built_in">Symbol</span>(<span class="string">&#x27;a&#x27;</span>)</span><br><span class="line"><span class="built_in">console</span>.log(a == b) <span class="comment">//false</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">const</span> c = <span class="built_in">Symbol</span>.for(<span class="string">&#x27;a&#x27;</span>)</span><br><span class="line"><span class="keyword">const</span> d = <span class="built_in">Symbol</span>.for(<span class="string">&#x27;a&#x27;</span>)</span><br><span class="line"><span class="built_in">console</span>.log(a == b) <span class="comment">//true</span></span><br><span class="line"></span><br><span class="line"><span class="comment">// 注：</span></span><br><span class="line"><span class="keyword">const</span> e = <span class="built_in">Symbol</span>(<span class="string">&#x27;a&#x27;</span>)</span><br><span class="line"><span class="keyword">const</span> f = <span class="built_in">Symbol</span>.for(<span class="string">&#x27;a&#x27;</span>)</span><br><span class="line"><span class="built_in">console</span>.log(a == b) <span class="comment">//false</span></span><br></pre></td></tr></table></figure>
+
+<p>还可以对其进行查询</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> g = <span class="built_in">Symbol</span>.for(<span class="string">&#x27;a&#x27;</span>);</span><br><span class="line"><span class="built_in">console</span>.log(<span class="built_in">Symbol</span>.keyFor(g)) <span class="comment">// &#x27;a&#x27;</span></span><br><span class="line"><span class="keyword">const</span> h = <span class="built_in">Symbol</span>(<span class="string">&#x27;a&#x27;</span>);</span><br><span class="line"><span class="built_in">console</span>.log(<span class="built_in">Symbol</span>.keyFor(h)) <span class="comment">// undefined</span></span><br><span class="line"></span><br><span class="line"><span class="built_in">console</span>.log(<span class="built_in">Symbol</span>.keyFor(<span class="number">123</span>)) <span class="comment">// TypeError 123 is not a symbol</span></span><br></pre></td></tr></table></figure>
+
+<p>当Symbol符号作为对象的键的时候，是不会被Object.keys或entries等相关api遍历出来的,</p>
+<p>可以通过Object.getOwnPropertySymbols()等来拿到对象的symbol类型键值</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> a = <span class="built_in">Symbol</span>(<span class="string">&#x27;a&#x27;</span>)</span><br><span class="line"><span class="keyword">const</span> b = <span class="built_in">Symbol</span>(<span class="string">&#x27;b&#x27;</span>)</span><br><span class="line"><span class="keyword">const</span> obj = &#123;&#125;</span><br><span class="line">obj[a] = <span class="string">&#x27;123&#x27;</span></span><br><span class="line">obj[b] = <span class="string">&#x27;456&#x27;</span></span><br><span class="line">obj[<span class="string">&#x27;c&#x27;</span>] = <span class="string">&#x27;789&#x27;</span></span><br><span class="line"><span class="built_in">console</span>.log(obj) <span class="comment">// &#123;c: &#x27;789&#x27;, Symbol(a): &#x27;123&#x27;, Symbol(b): &#x27;456&#x27;&#125;</span></span><br><span class="line"><span class="built_in">Object</span>.keys(obj) <span class="comment">// [&#x27;c&#x27;];</span></span><br><span class="line"><span class="built_in">Object</span>.values(obj) <span class="comment">// [&#x27;789&#x27;];</span></span><br><span class="line"></span><br><span class="line"><span class="built_in">Object</span>.getOwnPropertyNames(obj) <span class="comment">// [&#x27;c&#x27;];</span></span><br><span class="line"><span class="built_in">Object</span>.getOwnPropertySymbols(obj) <span class="comment">// [Symbol(a), Symbol(b)];</span></span><br><span class="line"><span class="built_in">Object</span>.getOwnPropertyDescriptors(obj) <span class="comment">// [Symbol(a), Symbol(b)];</span></span><br><span class="line"></span><br><span class="line"><span class="comment">// 或者通过Reflect.ownKeys()拿到两个类型的键</span></span><br><span class="line"><span class="built_in">Reflect</span>.ownKeys(obj) <span class="comment">// [&#x27;c&#x27;, Symbol(a), Symbol(b)];</span></span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+<h2 id="四、变量、作用域与内存"><a href="#四、变量、作用域与内存" class="headerlink" title="四、变量、作用域与内存"></a>四、变量、作用域与内存</h2><h3 id="原始值与引用值（4-1）"><a href="#原始值与引用值（4-1）" class="headerlink" title="原始值与引用值（4.1）"></a>原始值与引用值（4.1）</h3><p>变量可以包含两种类型的数据，原始值和引用值，</p>
+<p>原始值就是最简单的数据（string， number，symbol，undefined，null, boolean）</p>
+<p>引用值则是由多个值构成的对象。</p>
+<p>typeof可以确认值的原始值类型，instanceof可以用于确认值的引用类型 </p>
+<h2 id="六、集合引用类型"><a href="#六、集合引用类型" class="headerlink" title="六、集合引用类型"></a>六、集合引用类型</h2><h3 id="array-form-6-2-1"><a href="#array-form-6-2-1" class="headerlink" title="array.form() (6.2.1)"></a>array.form() (6.2.1)</h3><p>Array.form()除了能将类数组结构转换为数组实例外，还能进行类似map操作</p>
+<p>Array.from()方法有一个可选参数 mapFn，让你可以在最后生成的数组上再执行一次map方法后再返回。也就是说` Array.from(obj, mapFn, thisArg) 就相当于 Array.from(obj).map(mapFn, thisArg)</p>
 
         <p class="suffix-end">__END__</p>
         <div class="suffix-box">
@@ -87,7 +104,7 @@
             <div class="suffix-box-right">
                 <span class="suffix-box-title">文章作者</span>：Tian
                 <br>
-                <span class="suffix-box-title">文章出处</span>：<a href="/blog/2022/01/04/test/" target="_blank">test</a>
+                <span class="suffix-box-title">文章出处</span>：<a href="/blog/2022/01/07/js%E9%AB%98%E7%A8%8B%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/" target="_blank">js高程学习笔记</a>
                 <br>
                 <span class="suffix-box-title">作者签名</span>：简单地活着, 肆意又精彩.
                 <br>
@@ -112,7 +129,7 @@
             <div class="tag">
                 标签：
                 
-                    <a href="/blog/tag/test/">test</a>
+                    <a href="/blog/tag/js/">js</a>
                 
             </div>
         
@@ -401,7 +418,7 @@
                 
                     {
                         icon : 'icon-github', 
-                        url  : 'https://github.com/first19326'
+                        url  : 'https://github.com/bastard514'
                     },
                 
             
