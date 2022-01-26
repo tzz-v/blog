@@ -6,7 +6,7 @@
     <meta name="referrer" content="origin">
     <meta http-equiv="Cache-Control" content="no-transform">
     <meta http-equiv="Cache-Control" content="no-siteapp">
-    <title>赞赏</title>
+    <title>一、时间复杂度与空间复杂度</title>
     <link rel="shortcut icon" href="#"/>
 
     <link type="text/css" rel="stylesheet" href="https://cdn.jsdelivr.net/gh/first19326/cdn@master/static/font/LongCang.css">
@@ -18,12 +18,13 @@
     <link type="text/css" rel="stylesheet" href="https://cdn.jsdelivr.net/gh/first19326/cdn@master/static/font/Rosario.css">
     <link type="text/css" rel="stylesheet" href="https://cdn.jsdelivr.net/gh/first19326/cdn@master/static/font/UbuntuMono.css">
 
-    <link type="text/css" rel="stylesheet" href="https://cdn.jsdelivr.net/gh/first19326/cdn@master/static/css/page.css">
+    <link type="text/css" rel="stylesheet" href="https://cdn.jsdelivr.net/gh/first19326/cdn@master/static/css/post.css">
     
         <link type="text/css" rel="stylesheet" href="https://cdn.jsdelivr.net/gh/first19326/cdn@master/static/css/normal.css">
     
 
     <script type="text/javascript" src="https://cdn.jsdelivr.net/gh/first19326/cdn@master/static/js/jquery-3.4.1.min.js"></script>
+
 <meta name="generator" content="Hexo 5.4.0"></head>
 <body>
     <a id="cover"></a>
@@ -31,10 +32,21 @@
     <div class="header">
         <div class="vertical">
             <div class="inner">
-                <h1 class="header-subtitle">赞赏</h1>
+                <h1 class="header-subtitle">一、时间复杂度与空间复杂度</h1>
                 <div class="header-subinfo">
-                    <p class="article-info-text Chinese"></p>
-                    <p class="article-info-text English"></p>                  
+                    <p class="article-info-text">
+                        <span>
+                            <i class="iconfont icon-time"></i> 发表时间：2022-01-07
+                        </span>
+                        
+                            <span id="/2022/01/07/一、时间复杂度与空间复杂度/" class="leancloud_visitors" data-flag-title="一、时间复杂度与空间复杂度">
+                                <i class="iconfont icon-browse"></i> 阅读：<sapn class="leancloud-visitors-count"></span>
+                            </span>
+                        
+                        <span>
+                            <i class="iconfont icon-interactive"></i> 评论：<span class="valine-comment-count" data-xid="/2022/01/07/一、时间复杂度与空间复杂度/"></span>
+                        </span>  
+                    </p>                 
                 </div>
             </div>
         </div>
@@ -44,27 +56,97 @@
     <div id="container">
     <div id="content">
         <div id="article">
-            <div class="article-body">
-                <blockquote>
-<p>如果喜欢我的博客，或者喜欢我的博客主题，可以考虑赞赏一下哦，非常感激！<br> 网站所需的服务器和 CDN 都是不小的开支，日常维护也需要大量精力。 <br> 你们的支持是我前进的最大动力！</p>
-</blockquote>
+    <div class="toc"></div>
+    <div class="article-body">
+        <h2 id="开头"><a href="#开头" class="headerlink" title="开头"></a>开头</h2><p>好记性不如烂笔头，在这里记录下学习数据结构与算法之美的笔记</p>
+<h2 id="简述"><a href="#简述" class="headerlink" title="简述"></a>简述</h2><ul>
+<li>数据结构指的是‘一组数据的存储结构’，算法指的是’操作数据的一种方法‘。</li>
+<li>数据结构是为算法服务的，算法要作用在特定的数据结构之上。</li>
+</ul>
+<h2 id="正片"><a href="#正片" class="headerlink" title="正片"></a>正片</h2><h3 id="复杂度分析"><a href="#复杂度分析" class="headerlink" title="复杂度分析"></a>复杂度分析</h3><h4 id="时间复杂度-（大O复杂度表示法）"><a href="#时间复杂度-（大O复杂度表示法）" class="headerlink" title="时间复杂度 （大O复杂度表示法）"></a>时间复杂度 （大O复杂度表示法）</h4><p>算法的执行效率，粗略的讲，就是算法代码的执行时间。</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> (n) =&gt; &#123;</span><br><span class="line">  <span class="keyword">const</span> sum = <span class="number">0</span>;</span><br><span class="line">  <span class="keyword">const</span> i = <span class="number">1</span>;</span><br><span class="line">  <span class="keyword">for</span> (; i &lt;= n; ++i) &#123;</span><br><span class="line">    sum = sum + i;</span><br><span class="line">  &#125;;</span><br><span class="line">  <span class="keyword">return</span> sum</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>假设每行代码执行的时间都一样，为 o,那么</p>
+<p>第2, 3行分别需要一个o的执行时间；</p>
+<p>第4, 5行都运行了n次，所以需要2个n* o的执行时间；</p>
+<p>这段代码的总执行时间就是：<code>（2n + 2）* o</code>。 </p>
+<p>可以看出，每行代码的执行次数越多，总执行时间T(n)就越高。按照这个思路，再看一段代码</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> (n) =&gt; &#123;</span><br><span class="line">  <span class="keyword">const</span> sum = <span class="number">0</span>;</span><br><span class="line">  <span class="keyword">const</span> i = <span class="number">1</span>;</span><br><span class="line">  <span class="keyword">for</span> (; i &lt;= n; ++i) &#123;</span><br><span class="line">    <span class="keyword">const</span> j = <span class="number">1</span>;</span><br><span class="line">    <span class="keyword">for</span> (; j &lt;= n; ++j) &#123;</span><br><span class="line">      sum = sum + i + j;</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;;</span><br><span class="line">  <span class="keyword">return</span> sum</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>第2、3、5行需要一个o的执行时间；</p>
+<p>第4、5行执行了n遍，需要2个n * o的执行时间；</p>
+<p>第7、8行执行了n^2遍，需要2个n^2 * o的执行时间；</p>
+<p>总执行时间为<code>(2n^2 + 2n + 3) * o</code>。</p>
+<p>通过推导，得到一个公式<code>T(n) = O(f(n))</code><br>t(n)表示代码的执行时间，f(n)表示代码执行次数的总和，所以，第一个例子中的T(n) = <code>O(2n + 2)</code>和第二个例子的T(n) = <code>O(2n^2 + 2n + 3)</code>。这就是大O时间复杂度表示法，他并不能具体表示代码的真正执行时间，而是表示代码执行时间<code>随数据规模增长的变化趋势</code>。<br>其中，f(n)中的低阶、常量、系数、三部分对增长趋势不产生绝对影响（在（2n^2 + 2n + 3）中，低阶是2n、常量是3、系数是2），所以都可以省略，我们只需要记录一个最大量级就可以，因此，前两个例子的事件复杂度可以记为<code>T(n) = O(n); T(n) = O(n^2)</code>。</p>
+<h4 id="几种常见的时间复杂度"><a href="#几种常见的时间复杂度" class="headerlink" title="几种常见的时间复杂度"></a>几种常见的时间复杂度</h4><p>（按数量级排列）</p>
+<ol>
+<li>常量阶： O(1)<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 只要代码的执行时间不随n的增大而增大，这样代码的时间复杂度都记作O(1)</span></span><br><span class="line"><span class="keyword">const</span> func = <span class="function">(<span class="params">n</span>) =&gt;</span> &#123;</span><br><span class="line">  <span class="keyword">const</span> a = <span class="number">1</span>;</span><br><span class="line">  <span class="keyword">const</span> b = <span class="number">2</span>;</span><br><span class="line">  <span class="keyword">return</span> a + b;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></li>
+<li>对数阶： O(log n)<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">let</span> i = <span class="number">1</span>;</span><br><span class="line"><span class="keyword">while</span> (i &lt;= n) &#123;</span><br><span class="line">  i = i * <span class="number">2</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></li>
+<li>线性阶： O(n)</li>
+<li>线性对数阶： O(n * log n)</li>
+<li>平方阶： O(n^2)、立方阶： O（n^3）……</li>
+<li>指数阶： O(2^n)</li>
+<li>阶乘阶： O(n!)</li>
+</ol>
+<h4 id="空间复杂度"><a href="#空间复杂度" class="headerlink" title="空间复杂度"></a>空间复杂度</h4><p>与时间复杂度同理，表示算法的存储空间与数据规模的增长关系。</p>
+<h4 id="常见的空间复杂度"><a href="#常见的空间复杂度" class="headerlink" title="常见的空间复杂度"></a>常见的空间复杂度</h4><p>O(1)、O(n)、o(n^2)</p>
 
-                <link type="text/css" rel="stylesheet" href="https://cdn.jsdelivr.net/gh/first19326/cdn@master/static/css/donate.css">
-<div class="donate">
-    <i id="Github"></i>
-    <div id="DonateText">赞赏</div>
-    <ul id="DonateBox" class="list">
-        <li id="PayPal"></li>
-        <li id="AliPay">AliPay</li>
-		<li id="WeChat">WeChat</li>
-		<li id="Bitcoin">Bitcoin</li>
-    </ul>
-    <div id="QRBox">
-        <div id="MainBox"></div>
-    </div>
-</div>
-            </div>        
+        <p class="suffix-end">__END__</p>
+        <div class="suffix-box">
+            <div class="suffix-box-left">
+                <img src="https://gimg2.baidu.com/image_search/src=http%3A%2F%2Fup.enterdesk.com%2Fedpic%2F6a%2F67%2F94%2F6a6794c824b4e53320f6abe9da88980f.png&refer=http%3A%2F%2Fup.enterdesk.com&app=2002&size=f9999,10000&q=a80&n=0&g=0n&fmt=jpeg?sec=1643881365&t=dff594fe3849d33525c459f157942d85" alt="Tian">
+            </div>
+            <div class="suffix-box-right">
+                <span class="suffix-box-title">文章作者</span>：Tian
+                <br>
+                <span class="suffix-box-title">文章出处</span>：<a href="/blog/2022/01/07/%E4%B8%80%E3%80%81%E6%97%B6%E9%97%B4%E5%A4%8D%E6%9D%82%E5%BA%A6%E4%B8%8E%E7%A9%BA%E9%97%B4%E5%A4%8D%E6%9D%82%E5%BA%A6/" target="_blank">一、时间复杂度与空间复杂度</a>
+                <br>
+                <span class="suffix-box-title">作者签名</span>：ღゝ◡╹)ノ♡
+                <br>
+                <span class="suffix-box-title">关于主题</span>：<a href="https://github.com/first19326/Hexo-LiveForCode" target="_blank">Hexo - Live For Code</a>
+                <br>
+                <span class="suffix-box-title">版权声明</span>：文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-nd/4.0/" title="BY-NC-SA" target="_blank">BY-NC-SA</a> 许可协议，转载请注明出处
+                <br>
+            </div>
+            <div style="clear: both;"></div>
         </div>
+    </div>
+    <div class="article-footer">
+        
+            <div class="category">
+                分类：
+                
+                    <a href="/blog/categorie/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E4%B8%8E%E7%AE%97%E6%B3%95%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/">数据结构与算法学习笔记</a>
+                
+            </div>
+        
+        
+            <div class="tag">
+                标签：
+                
+                    <a href="/blog/tag/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E4%B8%8E%E7%AE%97%E6%B3%95/">数据结构与算法</a>
+                
+            </div>
+        
+        <div class="article-prev-next">
+            
+                <a href="/blog/2022/01/19/%E4%BA%8C%E3%80%81%E6%95%B0%E7%BB%84%E5%92%8C%E9%93%BE%E8%A1%A8/" class="prev-prefix">« </a> 上一篇：    <a href="/blog/2022/01/19/%E4%BA%8C%E3%80%81%E6%95%B0%E7%BB%84%E5%92%8C%E9%93%BE%E8%A1%A8/" title="发布于 2022-01-19 10:41">二、数组和链表</a>
+                <br>
+            
+            
+                <a href="/blog/2022/01/07/js%E9%AB%98%E7%A8%8B%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/" class="next-prefix">» </a> 下一篇：    <a href="/blog/2022/01/07/js%E9%AB%98%E7%A8%8B%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/" title="发布于 2022-01-07 10:28">js高程学习笔记</a>
+            
+        </div>
+    </div>
+    
+    <div class="article-comments">
+        <div class="comments-title">
+            评论列表
+        </div>
+        <div class="comments-content">
+        </div>
+    </div>
+
+</div>
+
     </div>
 </div>
     <div id="footer"></div>
