@@ -91,8 +91,11 @@
 <h2 id="双向链表"><a href="#双向链表" class="headerlink" title="双向链表"></a>双向链表</h2><p>单链表只有一个方向，节点只有一个后继指针 next 指向后面的节点，双向链表则多了一个前驱指针 prev 指向前面的节点，支持双向遍历，增加了灵活性。<br>同样的，既然多出一个空间用来存储前驱节点，所以，当存储同样多的数据时，双向链表要比单链表占据更多的内存空间</p>
 <img src="/blog/images/BidirectionalLinkedList.webp" class="">
 
-<p>h</p>
-<h1 id="数组和链表的区别："><a href="#数组和链表的区别：" class="headerlink" title="数组和链表的区别："></a>数组和链表的区别：</h1><ul>
+<h2 id="链表的相关操作"><a href="#链表的相关操作" class="headerlink" title="链表的相关操作"></a>链表的相关操作</h2><h3 id="插入节点"><a href="#插入节点" class="headerlink" title="插入节点"></a>插入节点</h3><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">// 将节点插入到node后面</span><br><span class="line">new_node-&gt;next = node-&gt;next</span><br><span class="line">node = new_node</span><br></pre></td></tr></table></figure>
+
+<h3 id="删除节点"><a href="#删除节点" class="headerlink" title="删除节点"></a>删除节点</h3><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">// 删除节点node的后继节点</span><br><span class="line">node-&gt;next = node-&gt;next-&gt;next</span><br></pre></td></tr></table></figure>
+
+<h1 id="总结：-数组和链表的区别："><a href="#总结：-数组和链表的区别：" class="headerlink" title="总结： 数组和链表的区别："></a>总结： 数组和链表的区别：</h1><ul>
 <li><p>存储结构：</p>
 <ul>
 <li>数组： 连续的内存空间；可以借助 CPU 的缓存机制，预读数组中的数据，访问效率更高。</li>
