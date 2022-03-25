@@ -6,7 +6,7 @@
     <meta name="referrer" content="origin">
     <meta http-equiv="Cache-Control" content="no-transform">
     <meta http-equiv="Cache-Control" content="no-siteapp">
-    <title>标签 - 数据结构与算法</title>
+    <title>五、 排序</title>
     <link rel="shortcut icon" href="#"/>
 
     <link type="text/css" rel="stylesheet" href="https://cdn.jsdelivr.net/gh/first19326/cdn@master/static/font/LongCang.css">
@@ -18,161 +18,117 @@
     <link type="text/css" rel="stylesheet" href="https://cdn.jsdelivr.net/gh/first19326/cdn@master/static/font/Rosario.css">
     <link type="text/css" rel="stylesheet" href="https://cdn.jsdelivr.net/gh/first19326/cdn@master/static/font/UbuntuMono.css">
 
-    <link type="text/css" rel="stylesheet" href="https://cdn.jsdelivr.net/gh/first19326/cdn@master/static/css/index.css">
+    <link type="text/css" rel="stylesheet" href="https://cdn.jsdelivr.net/gh/first19326/cdn@master/static/css/post.css">
+    
+        <link type="text/css" rel="stylesheet" href="https://cdn.jsdelivr.net/gh/first19326/cdn@master/static/css/normal.css">
+    
 
     <script type="text/javascript" src="https://cdn.jsdelivr.net/gh/first19326/cdn@master/static/js/jquery-3.4.1.min.js"></script>
+
 <meta name="generator" content="Hexo 5.4.0"></head>
 <body>
     <a id="cover"></a>
     <div id="header">
-    <div class="header" >
+    <div class="header">
         <div class="vertical">
             <div class="inner">
-                <h1 class="header-title"></h1>
-                <h2 class="header-description" id="hitokoto"></h2>
-                <h3 class="header-info" id="hitokotoAuthor"></h3>
-                <!--
-                <h1 class="header-subtitle"></h1>
-                <p class="header-subinfo"></p>
-                -->
+                <h1 class="header-subtitle">五、 排序</h1>
+                <div class="header-subinfo">
+                    <p class="article-info-text">
+                        <span>
+                            <i class="iconfont icon-time"></i> 发表时间：2022-03-25
+                        </span>
+                        
+                            <span id="/2022/03/25/五、-排序/" class="leancloud_visitors" data-flag-title="五、 排序">
+                                <i class="iconfont icon-browse"></i> 阅读：<sapn class="leancloud-visitors-count"></span>
+                            </span>
+                        
+                        <span>
+                            <i class="iconfont icon-interactive"></i> 评论：<span class="valine-comment-count" data-xid="/2022/03/25/五、-排序/"></span>
+                        </span>  
+                    </p>                 
+                </div>
             </div>
         </div>
-        <a class="scroll-down" href="javascript:;" target="_self" data-offset="-45">
-            <span class="hidden">Scroll Down</span>
-            <i class="scroll-down-icon iconfont icon-return"></i>
-        </a>
+        <canvas id="articleHeaderCanvas"></canvas>
     </div>
 </div>
     <div id="container">
     <div id="content">
-        <div class="articles">
-    
-        <div class="article">
-            <div class="article-title">
-                <a href="/blog/2022/03/25/%E4%BA%94%E3%80%81-%E6%8E%92%E5%BA%8F/">五、 排序</a>
-                
+        <div id="article">
+    <div class="toc"></div>
+    <div class="article-body">
+        <h2 id="排序的分类"><a href="#排序的分类" class="headerlink" title="排序的分类"></a>排序的分类</h2><ul>
+<li>时间复杂度（O(n^2)）: 冒泡、插入、选择；</li>
+<li>时间复杂度（O(nLogn)）: 快排，归并；</li>
+<li>时间复杂度（O(n)）: 桶，计数，基数；</li>
+</ul>
+<h2 id="如何分析一个排序算法"><a href="#如何分析一个排序算法" class="headerlink" title="如何分析一个排序算法"></a>如何分析一个排序算法</h2><h3 id="执行效率（时间复杂度）："><a href="#执行效率（时间复杂度）：" class="headerlink" title="执行效率（时间复杂度）："></a>执行效率（时间复杂度）：</h3><ol>
+<li>最好情况、最坏情况、平均情况；</li>
+<li>时间复杂度的系数、常数、低阶：时间复杂度反映的是数据规模n很大的时候的增长趋势，所以他会忽略掉系数、常数和低阶。但实际开发中，面对一些规模很小的数据时，为了相对精确的比较不同算法的执行效率，就需要把系数、常数、低阶也考虑进去。<h3 id="内存消耗（空间复杂度）；"><a href="#内存消耗（空间复杂度）；" class="headerlink" title="内存消耗（空间复杂度）；"></a>内存消耗（空间复杂度）；</h3><h3 id="稳定性：指的是如果在待排序的序列中存在值相等的元素，经过排序后，相等元素之间的顺序是否发生变化"><a href="#稳定性：指的是如果在待排序的序列中存在值相等的元素，经过排序后，相等元素之间的顺序是否发生变化" class="headerlink" title="稳定性：指的是如果在待排序的序列中存在值相等的元素，经过排序后，相等元素之间的顺序是否发生变化"></a>稳定性：指的是如果在待排序的序列中存在值相等的元素，经过排序后，相等元素之间的顺序是否发生变化</h3></li>
+</ol>
+<h2 id="冒泡排序"><a href="#冒泡排序" class="headerlink" title="冒泡排序"></a>冒泡排序</h2><p>从下标0开始，对相邻的数据进行比较，不满足条件则互换位置。</p>
+<p>一轮冒泡会让至少一个元素移动到他应该在的位置。重复n次。就完成了n个数据的排序。</p>
+<img src="/blog/images/bubbling.webp" class="">
+<p>可以看到，经过一次排序后，6已经挪到了末尾。执行6次后，排序完成。<br>两个优化点：</p>
+<ul>
+<li>当某一轮冒泡期间，没有数据交换的操作，意味着已经达到完全有序，就无须在进行后续的冒泡操作了。</li>
+<li>每一轮冒泡后，都会至少确认一个元素的位置于末尾。因此，每轮冒泡相对于上一轮都可以少比较一次。（如图例，第一轮冒泡需要比较6个元素，第二轮则只需要比较前5个元素）</li>
+</ul>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line">// 冒泡排序</span><br><span class="line">const bobbleSort = (arr) =&gt; &#123;</span><br><span class="line">  if (arr.length &lt;= 1) return arr;</span><br><span class="line">  for(let i = 0; i &lt; arr.length; i++) &#123;</span><br><span class="line">    let flag = true;</span><br><span class="line">    for(let j = 0; j &lt; arr.length - i; j++) &#123;</span><br><span class="line">      if (arr[j] &gt; arr[j + 1]) &#123;</span><br><span class="line">        let temp = arr[j];</span><br><span class="line">        arr[j] = arr[j + 1];</span><br><span class="line">        arr[j] = temp;</span><br><span class="line">        flag = false;</span><br><span class="line">      &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    if (flag) break;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+        <p class="suffix-end">__END__</p>
+        <div class="suffix-box">
+            <div class="suffix-box-left">
+                <img src="https://gimg2.baidu.com/image_search/src=http%3A%2F%2Fup.enterdesk.com%2Fedpic%2F6a%2F67%2F94%2F6a6794c824b4e53320f6abe9da88980f.png&refer=http%3A%2F%2Fup.enterdesk.com&app=2002&size=f9999,10000&q=a80&n=0&g=0n&fmt=jpeg?sec=1643881365&t=dff594fe3849d33525c459f157942d85" alt="Tian">
             </div>
-            <div class="article-abstract">
-                
+            <div class="suffix-box-right">
+                <span class="suffix-box-title">文章作者</span>：Tian
+                <br>
+                <span class="suffix-box-title">文章出处</span>：<a href="/blog/2022/03/25/%E4%BA%94%E3%80%81-%E6%8E%92%E5%BA%8F/" target="_blank">五、 排序</a>
+                <br>
+                <span class="suffix-box-title">作者签名</span>：ღゝ◡╹)ノ♡
+                <br>
+                <span class="suffix-box-title">关于主题</span>：<a href="https://github.com/first19326/Hexo-LiveForCode" target="_blank">Hexo - Live For Code</a>
+                <br>
+                <span class="suffix-box-title">版权声明</span>：文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-nd/4.0/" title="BY-NC-SA" target="_blank">BY-NC-SA</a> 许可协议，转载请注明出处
+                <br>
             </div>
-            <div class="clear"></div>
-            <div class="article-info">
-                <span>
-                    <i class="iconfont icon-time"></i> 发表时间：2022-03-25
-                </span>
-                
-                    <span id="/2022/03/25/五、-排序/" class="leancloud_visitors" data-flag-title="五、 排序">
-                        <i class="iconfont icon-browse"></i> 阅读：<sapn class="leancloud-visitors-count"></span>
-                    </span>
-                
-                <span>
-                    <i class="iconfont icon-interactive"></i> 评论：<span class="valine-comment-count" data-xid="/2022/03/25/五、-排序/"></span>
-                </span>
-            </div>
-            <div class="clear"></div>     
+            <div style="clear: both;"></div>
         </div>
-    
-        <div class="article">
-            <div class="article-title">
-                <a href="/blog/2022/02/22/%E5%9B%9B%E3%80%81%E9%80%92%E5%BD%92/">四、递归</a>
+    </div>
+    <div class="article-footer">
+        
+            <div class="category">
+                分类：
+                
+                    <a href="/blog/categorie/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E4%B8%8E%E7%AE%97%E6%B3%95%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/">数据结构与算法学习笔记</a>
                 
             </div>
-            <div class="article-abstract">
+        
+        
+            <div class="tag">
+                标签：
+                
+                    <a href="/blog/tag/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E4%B8%8E%E7%AE%97%E6%B3%95/">数据结构与算法</a>
                 
             </div>
-            <div class="clear"></div>
-            <div class="article-info">
-                <span>
-                    <i class="iconfont icon-time"></i> 发表时间：2022-02-22
-                </span>
-                
-                    <span id="/2022/02/22/四、递归/" class="leancloud_visitors" data-flag-title="四、递归">
-                        <i class="iconfont icon-browse"></i> 阅读：<sapn class="leancloud-visitors-count"></span>
-                    </span>
-                
-                <span>
-                    <i class="iconfont icon-interactive"></i> 评论：<span class="valine-comment-count" data-xid="/2022/02/22/四、递归/"></span>
-                </span>
-            </div>
-            <div class="clear"></div>     
+        
+        <div class="article-prev-next">
+            
+            
+                <a href="/blog/2022/02/22/%E5%9B%9B%E3%80%81%E9%80%92%E5%BD%92/" class="next-prefix">» </a> 下一篇：    <a href="/blog/2022/02/22/%E5%9B%9B%E3%80%81%E9%80%92%E5%BD%92/" title="发布于 2022-02-22 11:09">四、递归</a>
+            
         </div>
+    </div>
     
-        <div class="article">
-            <div class="article-title">
-                <a href="/blog/2022/02/21/%E4%B8%89%E3%80%81%E6%A0%88%E5%92%8C%E9%98%9F%E5%88%97/">三、栈和队列</a>
-                
-            </div>
-            <div class="article-abstract">
-                
-            </div>
-            <div class="clear"></div>
-            <div class="article-info">
-                <span>
-                    <i class="iconfont icon-time"></i> 发表时间：2022-02-21
-                </span>
-                
-                    <span id="/2022/02/21/三、栈和队列/" class="leancloud_visitors" data-flag-title="三、栈和队列">
-                        <i class="iconfont icon-browse"></i> 阅读：<sapn class="leancloud-visitors-count"></span>
-                    </span>
-                
-                <span>
-                    <i class="iconfont icon-interactive"></i> 评论：<span class="valine-comment-count" data-xid="/2022/02/21/三、栈和队列/"></span>
-                </span>
-            </div>
-            <div class="clear"></div>     
+    <div class="article-comments">
+        <div class="comments-title">
+            评论列表
         </div>
-    
-        <div class="article">
-            <div class="article-title">
-                <a href="/blog/2022/01/19/%E4%BA%8C%E3%80%81%E6%95%B0%E7%BB%84%E5%92%8C%E9%93%BE%E8%A1%A8/">二、数组和链表</a>
-                
-            </div>
-            <div class="article-abstract">
-                
-            </div>
-            <div class="clear"></div>
-            <div class="article-info">
-                <span>
-                    <i class="iconfont icon-time"></i> 发表时间：2022-01-19
-                </span>
-                
-                    <span id="/2022/01/19/二、数组和链表/" class="leancloud_visitors" data-flag-title="二、数组和链表">
-                        <i class="iconfont icon-browse"></i> 阅读：<sapn class="leancloud-visitors-count"></span>
-                    </span>
-                
-                <span>
-                    <i class="iconfont icon-interactive"></i> 评论：<span class="valine-comment-count" data-xid="/2022/01/19/二、数组和链表/"></span>
-                </span>
-            </div>
-            <div class="clear"></div>     
+        <div class="comments-content">
         </div>
-    
-        <div class="article">
-            <div class="article-title">
-                <a href="/blog/2022/01/07/%E4%B8%80%E3%80%81%E6%97%B6%E9%97%B4%E5%A4%8D%E6%9D%82%E5%BA%A6%E4%B8%8E%E7%A9%BA%E9%97%B4%E5%A4%8D%E6%9D%82%E5%BA%A6/">一、时间复杂度与空间复杂度</a>
-                
-            </div>
-            <div class="article-abstract">
-                
-            </div>
-            <div class="clear"></div>
-            <div class="article-info">
-                <span>
-                    <i class="iconfont icon-time"></i> 发表时间：2022-01-07
-                </span>
-                
-                    <span id="/2022/01/07/一、时间复杂度与空间复杂度/" class="leancloud_visitors" data-flag-title="一、时间复杂度与空间复杂度">
-                        <i class="iconfont icon-browse"></i> 阅读：<sapn class="leancloud-visitors-count"></span>
-                    </span>
-                
-                <span>
-                    <i class="iconfont icon-interactive"></i> 评论：<span class="valine-comment-count" data-xid="/2022/01/07/一、时间复杂度与空间复杂度/"></span>
-                </span>
-            </div>
-            <div class="clear"></div>     
-        </div>
-    
-    
+    </div>
+
 </div>
 
     </div>
